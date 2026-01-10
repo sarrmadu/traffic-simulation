@@ -1,0 +1,18 @@
+# Simulation Feu Tricolore - Dépendances Python
+# Projet académique - Ville de Thiès
+
+# Dépendances principales (standard library)
+# Aucune dépendance externe requise
+
+# Pour le développement (optionnel)
+pytest>=7.0.0
+black>=22.0.0
+flake8>=6.0.0
+
+# Pour la documentation (optionnel)
+# Aucune
+
+# Versions testées
+# Python 3.8+
+# SQLite 3.35+
+# Tkinter 8.6+
