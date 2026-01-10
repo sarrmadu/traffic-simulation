@@ -38,5 +38,5 @@ Ce projet est réalisé dans le cadre d'un travail pratique universitaire. Il vi
 
 1. **Cloner le dépôt**
 ```bash
-git clone https://github.com/votre-repo/traffic-simulation.git
+git clone https://github.com/sarrmadu/traffic-simulation.git
 cd traffic-simulation
