@@ -17,7 +17,7 @@
 ### Installation
 ```bash
 # 1. Cloner le dépôt
-git clone https://github.com/votre-username/traffic-simulation.git
+git clone https://github.com/sarrmadu/traffic-simulation.git
 cd traffic-simulation
 
 # 2. Installer les dépendances (optionnel)
