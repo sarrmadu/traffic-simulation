@@ -1,5 +1,4 @@
-
-## architecture.md**
+## architecture.md\*\*
 
 ```python
 """
@@ -203,3 +202,4 @@ Ajouter des méthodes dans database.py.
 
 Voir database.py pour le schéma complet.
 """
+```
