@@ -175,6 +175,21 @@ EVENT_TYPES = [
     "USER_ACTION"
 ]
 
+# ==================== VÉHICULES - COMPORTEMENT ====================
+# Distances de sécurité
+SAFE_DISTANCE = 60      # Distance minimale entre véhicules
+STOP_DISTANCE = 120     # Distance pour s'arrêter au feu rouge
+SLOW_DOWN_DISTANCE = 200  # Distance pour ralentir (feu orange ou feu rouge loin)
+
+# Autres paramètres de comportement
+VEHICLE_REACTION_TIME = 0.5  # Temps de réaction (secondes)
+MIN_FOLLOWING_DISTANCE = 40  # Distance de suivi minimale
+MAX_FOLLOWING_DISTANCE = 100  # Distance de suivi maximale
+
+# Probabilités
+PROBABILITY_CHANGE_LANE = 0.1  # Probabilité de changer de voie
+PROBABILITY_SPEED_UP = 0.3     # Probabilité d'accélérer
+PROBABILITY_SLOW_DOWN = 0.2    # Probabilité de ralentir
 # ==================== CHEMINS D'IMPORT ====================
 import sys
 import os

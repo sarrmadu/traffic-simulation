@@ -51,19 +51,16 @@ class RoadScene:
         # Effacer l'écran
         self.pen.clear()
         
-        # Dessiner l'herbe (fond vert)
+        # Dessiner dans l'ordre
         self._draw_grass()
-        
-        # Dessiner les routes
         self._draw_horizontal_road()
         self._draw_vertical_road()
-        
-        # Dessiner l'intersection
         self._draw_intersection()
+        self._draw_road_markings()  # NOUVEAU !
         
         # Mettre à jour l'affichage
         self.screen.update()
-        print("✓ Réseau routier dessiné")
+        print("✓ Réseau routier dessiné avec marquages")
     
     def _draw_grass(self) -> None:
         """Dessine l'herbe autour des routes"""
@@ -146,6 +143,70 @@ class RoadScene:
         if self.screen:
             self.screen.bye()
         print("✓ RoadScene fermé")
+    def _draw_road_markings(self) -> None:
+        """Dessine les marquages au sol (lignes)"""
+        self.pen.color("#FFFFFF")  # Blanc
+        self.pen.width(2)
+        
+        # Ligne centrale horizontale (pointillés)
+        self._draw_dashed_line((-500, 0), (500, 0))
+        
+        # Ligne centrale verticale (pointillés)
+        self._draw_dashed_line((0, -400), (0, 400))
+        
+        # Lignes de séparation de voies
+        self._draw_dashed_line((-500, -100), (500, -100))
+        self._draw_dashed_line((-500, 100), (500, 100))
+        self._draw_dashed_line((-100, -400), (-100, 400))
+        self._draw_dashed_line((100, -400), (100, 400))
+    
+    def _draw_dashed_line(self, start: tuple, end: tuple) -> None:
+        """Dessine une ligne en pointillés"""
+        x1, y1 = start
+        x2, y2 = end
+        
+        # Calculer la distance et le nombre de segments
+        distance = ((x2 - x1)**2 + (y2 - y1)**2)**0.5
+        dash_count = int(distance / 20)
+        
+        # Calculer l'incrément
+        dx = (x2 - x1) / dash_count
+        dy = (y2 - y1) / dash_count
+        
+        self.pen.penup()
+        self.pen.goto(x1, y1)
+        
+        for i in range(dash_count):
+            if i % 2 == 0:  # Segment visible
+                self.pen.pendown()
+            else:  # Espace
+                self.pen.penup()
+            
+            self.pen.goto(x1 + dx * (i + 1), y1 + dy * (i + 1))
+        
+        self.pen.penup()
+
+    def setup_vehicle_manager(self, vehicle_manager_graphic):
+        """
+        Configure le gestionnaire de véhicules graphiques
+        
+        Args:
+            vehicle_manager_graphic: Instance de VehicleManagerGraphic
+        """
+        self.vehicle_manager_graphic = vehicle_manager_graphic
+        print("✓ Gestionnaire de véhicules connecté à RoadScene")
+    
+    def update_vehicles(self) -> None:
+        """Met à jour l'affichage de tous les véhicules"""
+        if hasattr(self, 'vehicle_manager_graphic') and self.vehicle_manager_graphic:
+            # Cette méthode sera appelée par la simulation
+            # Les véhicules sont déjà dessinés par leur propre Turtle
+            pass
+    
+    def clear_all_vehicles(self) -> None:
+        """Efface tous les véhicules de l'écran"""
+        if hasattr(self, 'vehicle_manager_graphic') and self.vehicle_manager_graphic:
+            self.vehicle_manager_graphic.clear_all_vehicles()
 
 
 def test_road_scene():
@@ -163,6 +224,7 @@ def test_road_scene():
         scene.close()
     else:
         print("✗ Test échoué")
+
 
 if __name__ == "__main__":
     test_road_scene()

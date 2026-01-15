@@ -448,6 +448,34 @@ class ControlInterface:
             self.root.quit()
             self.root.destroy()
         print("✓ Interface fermée")
+        
+    def update_status(self, status_text: str, color: str = "black") -> None:
+        """Met à jour le statut de la simulation"""
+        if hasattr(self, 'lbl_status'):
+            self.lbl_status.config(text=f"Simulation: {status_text}", fg=color)
+    
+    def update_vehicle_count(self, count: int) -> None:
+        """Met à jour le compteur de véhicules"""
+        if hasattr(self, 'lbl_vehicles'):
+            self.lbl_vehicles.config(text=f"Véhicules actifs: {count}")
+    
+    def update_traffic_light(self, state: str) -> None:
+        """Met à jour l'état du feu"""
+        if hasattr(self, 'lbl_traffic_light'):
+            self.lbl_traffic_light.config(text=f"Feu: {state}")
+    
+    def update_scenario(self, scenario: str) -> None:
+        """Met à jour le scénario affiché"""
+        scenario_names = {
+            "normal": "Circulation Normale",
+            "rush_hour": "Heure de Pointe",
+            "night": "Mode Nuit",
+            "manual": "Mode Manuel"
+        }
+        display_name = scenario_names.get(scenario, "Inconnu")
+        
+        if hasattr(self, 'lbl_scenario'):
+            self.lbl_scenario.config(text=f"Scénario: {display_name}")
 
 
 def test_gui():
